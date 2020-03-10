@@ -10,10 +10,16 @@ const SearchBox = props => {
               <input
                 placeholder="Search movie"
                 onChange={props.handleChange}
-                id="first_name2"
+                list="search"
+                name="search"
                 type="text"
                 class="validate"
               />
+              <datalist id="search">
+                {props.movies.map(movie => {
+                  return <option value={movie.title} />;
+                })}
+              </datalist>
             </div>
           </form>
         </section>

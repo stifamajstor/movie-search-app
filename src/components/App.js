@@ -77,6 +77,7 @@ class App extends Component {
             <SearchBox
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
+              movies={this.state.movies}
             />
             <MovieList
               viewMovieInfo={this.viewMovieInfo}
