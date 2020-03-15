@@ -6,18 +6,18 @@ const SearchBox = props => {
       <div className="row">
         <section className="test col s4 offset-s4">
           <form onSubmit={props.handleSubmit} action="">
-            <div class="input-field">
+            <div className="input-field">
               <input
                 placeholder="Search movie"
                 onChange={props.handleChange}
                 list="search"
                 name="search"
                 type="text"
-                class="validate"
+                className="validate"
               />
               <datalist id="search">
                 {props.movies.map(movie => {
-                  return <option value={movie.title} />;
+                  return <option key={movie.id} value={movie.title} />;
                 })}
               </datalist>
             </div>

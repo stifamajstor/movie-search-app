@@ -37,20 +37,22 @@ class App extends Component {
           movies: [...data.data.results],
           totalResults: data.data.total_results
         });
-        console.log(this.state.movies);
       });
   };
 
   nextPage = pageNumber => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchString}&page=${pageNumber}`
-    ).then(data => {
-      this.setState({
-        movies: [...data.results],
-        totalResults: data.total_results,
-        currentPage: pageNumber
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchString}&page=${pageNumber}`
+      )
+      .then(data => {
+        console.log(data);
+        this.setState({
+          movies: [...data.data.results],
+          totalResults: data.total_results,
+          currentPage: pageNumber
+        });
       });
-    });
   };
 
   viewMovieInfo = id => {

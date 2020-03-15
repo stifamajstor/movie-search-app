@@ -9,7 +9,7 @@ const MovieInfo = props => {
           onClick={props.closeMovieInfo}
           style={{ cursor: "pointer", paddingTop: 50 }}
         >
-          <i class="fas fa-arrow-left"></i>
+          <i className="fas fa-arrow-left"></i>
           <span style={{ marginLeft: 10 }}>Go back</span>
         </div>
         <div className="row">
@@ -33,9 +33,12 @@ const MovieInfo = props => {
               <p>{props.currentMovie.title}</p>
               <p>
                 {props.currentMovie.release_date
-                  .substring(6)
+                  .substring(8)
                   .split("-")
-                  .concat(props.currentMovie.release_date.substring(0, 4))
+                  .concat(
+                    props.currentMovie.release_date.substring(5, 7),
+                    props.currentMovie.release_date.substring(0, 4)
+                  )
                   .join("/")}
               </p>
               <p>

@@ -3,8 +3,8 @@ import React from "react";
 const Movie = props => {
   return (
     <div className="col s12 m6 l3">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
+      <div className="card">
+        <div className="card-image waves-effect waves-block waves-light">
           {props.image === null ? (
             <img
               src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
@@ -19,7 +19,7 @@ const Movie = props => {
             />
           )}
         </div>
-        <div class="card-content">
+        <div className="card-content">
           <p>
             <a href="#" onClick={() => props.viewMovieInfo(props.movieId)}>
               View Details
