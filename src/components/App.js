@@ -21,35 +21,23 @@ class App extends Component {
   }
 
   handleChange = e => {
-    e.preventDefault();
-    this.setState({ searchString: e.target.value }, () => {
+    clearTimeout(this.submit);
+    this.submit = setTimeout(() => {
       this.handleSubmit();
-    });
+    }, 1000);
+    e.preventDefault();
+    this.setState({ searchString: e.target.value });
   };
 
-  handleSubmit = e => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchString}&page=${this.state.currentPage}`
-      )
-      .then(data => {
-        this.setState({
-          movies: [...data.data.results],
-          totalResults: data.data.total_results
-        });
-      });
-  };
-
-  nextPage = pageNumber => {
+  handleSubmit = pageNumber => {
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchString}&page=${pageNumber}`
       )
       .then(data => {
-        console.log(data);
         this.setState({
           movies: [...data.data.results],
-          totalResults: data.total_results,
+          totalResults: data.data.total_results,
           currentPage: pageNumber
         });
       });
@@ -95,7 +83,7 @@ class App extends Component {
         {this.state.totalResults > 20 && this.state.currentMovie === null ? (
           <Pagination
             pages={numberPages}
-            nextPage={this.nextPage}
+            nextPage={this.handleSubmit}
             currentPage={this.state.currentPage}
           />
         ) : (
